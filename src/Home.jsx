@@ -1,9 +1,27 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { logout } from "./redux/feature/authSlice";
 
 export default function Home() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <div>
+      <h1>Hello, {user.user}</h1>
+
       <Link to="/count">useState</Link>
       <br />
       <Link to="/reducer">userReducer</Link>
@@ -16,8 +34,12 @@ export default function Home() {
       <br />
       <Link to="/redux">redux</Link>
       <br />
-      <br />
-      <Link to="/">Home</Link>
+      {isLoggedIn ? (
+        <button onClick={handleLogout}>Logout</button>
+      ) : (
+        <Link to="/login">Login</Link>
+      )}
+     
     </div>
   );
 }

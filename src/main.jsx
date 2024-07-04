@@ -12,6 +12,7 @@ import UseForm from "./UseForm";
 import CounterRedux from "./redux/CounterRedux";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/redux",
     element: <CounterRedux />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
