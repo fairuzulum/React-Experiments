@@ -20,7 +20,11 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Hello, {user.user}</h1>
+      {isLoggedIn ? (
+        <h1>Welcome, {user.name}</h1>
+      ) : (
+        <h1>Welcome, Guest</h1>
+      )}
 
       <Link to="/count">useState</Link>
       <br />
@@ -33,6 +37,8 @@ export default function Home() {
       <Link to="/useform">useform</Link>
       <br />
       <Link to="/redux">redux</Link>
+      <br />
+      <Link to="/contex">contex</Link>
       <br />
       {isLoggedIn ? (
         <button onClick={handleLogout}>Logout</button>

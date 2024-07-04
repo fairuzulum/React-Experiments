@@ -13,6 +13,8 @@ import CounterRedux from "./redux/CounterRedux";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Login from "./pages/Login";
+import { CounterProvider } from "./context/CounterContext";
+import CounterWithContext from "./context/CounterWithContext";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/contex",
+    element: <CounterProvider><CounterWithContext /></CounterProvider>,
   },
 ]);
 
