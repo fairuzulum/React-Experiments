@@ -40,10 +40,12 @@ export default function Home() {
       <br />
       <Link to="/contex">contex</Link>
       <br />
+      <Link to="/api"> Access API</Link>
+      <br />
       {isLoggedIn ? (
         <button onClick={handleLogout}>Logout</button>
       ) : (
-        <Link to="/login">Login</Link>
+        <Link to="/login" >Login</Link>
       )}
      
     </div>

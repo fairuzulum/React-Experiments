@@ -15,6 +15,7 @@ import { store } from "./redux/store";
 import Login from "./pages/Login";
 import { CounterProvider } from "./context/CounterContext";
 import CounterWithContext from "./context/CounterWithContext";
+import AxiosPage from "./pages/AxiosPage";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/contex",
     element: <CounterWithContext />,
+  },
+  {
+    path: "/api",
+    element: <AxiosPage />,
   },
 ]);
 
