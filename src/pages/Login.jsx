@@ -37,7 +37,7 @@ export default function Login() {
                 <label htmlFor="password">Password</label>
                 <input type="password" className="form-control" id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
-            <button type='submit' className="btn btn-primary">Login</button>
+            <button type='submit' className="btn btn-primary mt-3">Login</button>
         </form>
     </div>
   )

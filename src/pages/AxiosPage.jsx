@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css"; 
 
 export default function AxiosPage() {
   const [pokemons, setPokemons] = useState([]);
@@ -11,7 +12,7 @@ export default function AxiosPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=151"
+          "https://pokeapi.co/api/v2/pokemon?limit=8"
         );
         const results = response.data.results;
 
@@ -22,7 +23,7 @@ export default function AxiosPage() {
               return {
                 name: pokemonResponse.data.name,
                 image: pokemonResponse.data.sprites.front_default,
-              };
+              }
             } catch (error) {
               console.error(
                 `Error fetching details for ${pokemon.name}:`,
@@ -45,35 +46,32 @@ export default function AxiosPage() {
     fetchData();
   }, []);
 
-  if (loading) return <p>Loading......</p>;
+  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div>
-      <h1>Pokemon List</h1>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+    <div className="container">
+      <h1 className="text-center my-4">Pokemon List</h1>
+      <div className="row">
         {pokemons.map((pokemon, index) => (
-          <div
-            key={index}
-            style={{
-              border: "1px solid #ddd",
-              margin: "10px",
-              padding: "10px",
-              width: "150px",
-              textAlign: "center",
-            }}
-          >
-            <img
-              src={pokemon.image}
-              alt={pokemon.name}
-              style={{ width: "100px", height: "100px" }}
-            />
-            <h3>{pokemon.name}</h3>
+          <div key={index} className="col-md-3 col-sm-4 col-xs-6 mb-4">
+            <div className="card h-100">
+              <img
+                src={pokemon.image}
+                alt={pokemon.name}
+                className="card-img-top"
+                style={{ width: "100px", height: "100px", margin: "0 auto", paddingTop: "10px" }}
+              />
+              <div className="card-body text-center">
+                <h5 className="card-title">{pokemon.name}</h5>
+              
+              </div>
+            </div>
           </div>
         ))}
       </div>
-      <div>
-        <Link to="/">Home</Link>
+      <div className="text-center mt-4">
+        <Link to="/" className="btn btn-primary">Home</Link>
       </div>
     </div>
   );
